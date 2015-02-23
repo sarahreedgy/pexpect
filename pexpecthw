@@ -1,0 +1,63 @@
+#!/usr/bn/env/python
+#pexpect basics, python starts objects at 0, so the object [2] woudl return the thrid string object in the split
+
+newprim = open("primates2.nex", "w")
+oldprim = open("primates.nex").read()
+corrected= oldprim
+
+child = pexpect.spawn("mb -i primates2.nex")
+child.sendline(r"mcmc")
+child.sendline("no")
+
+start mrbayes
+
+prim_run_2 = pexpect.run("mb primates2.nex")
+for line in prim_run_2.splitlines():
+	prim_string= 'mcmc ngen = 20000;'
+	line = line.lstrip()
+	if line.startswith("mcmc"):
+		line.replace(prim_string, 'mcmc ngen = 20000;', 'mcmcp ngen = 20000;',1)
+		pexpect.run("mb primates2.nex")
+		newprim= open(primates.nex)
+
+#2
+
+start mrbayes
+child = pexpect.spawn("mb -i primates2.nex")
+execute primates2.nex
+sumt primates2.nex
+
+prim_run_3 = pexpect.run("mb primates2.nex")
+for line in prim_run_3.splitlines():
+	if line.startswith("begin"):
+		print results.splitlines()[0]
+
+sump primates2.nex
+
+#3
+import glob, pexpect
+
+numgen= [1001]
+def mrbayes(numgen):
+	set nowar=yes;
+	mcmcp=numgen;
+	exe mcmc= no;
+	nexus_files=glob.glob("*.nex")
+	for nex in nexus_files:
+		nexfil = pexpect.run("mb nex")	
+quit
+
+
+def mrbayes2(numgen):
+	nexus_files=glob.glob("*.nex")
+	for nex in nexus_files:
+		nexfil = pexpect.run("mb nex")
+		output1= sumt primates2.nex
+		print output1
+		output2= sump primates2.nex
+		print output2
+	endsearch= glob.glob(*.t)
+	for line in endsearch:
+		endsearch.splitlines()
+		line=line.lstrip()
+		print  "these files end in '.t'" + line + ,
